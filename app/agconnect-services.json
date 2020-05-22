@@ -1,0 +1,27 @@
+{
+	"agcgw":{
+		"backurl":"connect-dre.dbankcloud.cn",
+		"url":"connect-dre.hispace.hicloud.com"
+	},
+	"client":{
+		"cp_id":"890090000023105941",
+		"product_id":"9105385871709242209",
+		"client_id":"341979645266101312",
+		"client_secret":"E97C67A82313316535B3D2732E8D6BCF1D8CD4C92F6E03928BC679EB686439E5",
+		"app_id":"102057369",
+		"package_name":"com.huawei.geofencetest",
+		"api_key":"CV6/2MINfYhNKNeK+zbd+vIE80dOCC5uhwSLtUBi2e2h4jK2fwE9JDMbpY/Lkw3SWRTx1oFMDuDdBa60EJj/WLTqNX3P"
+	},
+	"service":{
+		"analytics":{
+			"collector_url":"datacollector-dre.dt.hicloud.com,datacollector-dre.dt.dbankcloud.cn",
+			"resource_id":"p1",
+			"channel_id":""
+		},
+		"ml":{
+			"mlservice_url":"ml-api-dre.ai.dbankcloud.com,ml-api-dre.ai.dbankcloud.cn"
+		}
+	},
+	"region":"DE",
+	"configuration_version":"1.0"
+}
