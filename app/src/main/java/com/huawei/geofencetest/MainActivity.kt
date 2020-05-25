@@ -141,8 +141,9 @@ class MainActivity : AppCompatActivity(),OnMapReadyCallback {
                     // removed after this period of time.
                     .setValidContinueTime(Geofence.GEOFENCE_NEVER_EXPIRE)
                     .setConversions(
-                        Geofence.ENTER_GEOFENCE_CONVERSION
+                        Geofence.ENTER_GEOFENCE_CONVERSION or Geofence.DWELL_GEOFENCE_CONVERSION
                     )
+                    //.setDwellDelayTime(60000)
                     .build()
             )
         }

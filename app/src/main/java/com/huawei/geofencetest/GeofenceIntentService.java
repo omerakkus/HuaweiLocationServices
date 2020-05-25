@@ -113,12 +113,14 @@ public class GeofenceIntentService extends JobIntentService {
 
     }
 
-    private String getConversionString(int transitionType) {
-        switch (transitionType) {
+    private String getConversionString(int conversionType) {
+        switch (conversionType) {
             case Geofence.ENTER_GEOFENCE_CONVERSION:
                 return getString(R.string.geofence_transition_entered);
             case Geofence.EXIT_GEOFENCE_CONVERSION:
                 return getString(R.string.geofence_transition_exited);
+            case Geofence.DWELL_GEOFENCE_CONVERSION:
+                return getString(R.string.geofence_transition_dwell);
             default:
                 return getString(R.string.unknown_geofence_transition);
         }
