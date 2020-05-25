@@ -143,7 +143,7 @@ class MainActivity : AppCompatActivity(),OnMapReadyCallback {
                     .setConversions(
                         Geofence.ENTER_GEOFENCE_CONVERSION or Geofence.DWELL_GEOFENCE_CONVERSION
                     )
-                    //.setDwellDelayTime(60000)
+                    .setDwellDelayTime(10000) //10 seconds
                     .build()
             )
         }
