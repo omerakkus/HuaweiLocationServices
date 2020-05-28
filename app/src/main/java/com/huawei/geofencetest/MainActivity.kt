@@ -35,10 +35,10 @@ class MainActivity : AppCompatActivity(),OnMapReadyCallback {
     private  var locationCallback: LocationCallback?=null
     private lateinit var locationRequest : LocationRequest
     private lateinit var settingsClient : SettingsClient
-    private lateinit var geofenceServices: GeofenceService
 
     private val MAPVIEW_BUNDLE_KEY = "MapViewBundleKey"
     private var mGeofenceList: ArrayList<Geofence>? = null
+    private lateinit var geofenceServices: GeofenceService
     private var mGeofencePendingIntent: PendingIntent? = null
     private lateinit var editor : SharedPreferences.Editor
     var activityTransitionRequest: ActivityConversionRequest? = null
@@ -96,7 +96,7 @@ class MainActivity : AppCompatActivity(),OnMapReadyCallback {
         val mockLocation = Location(LocationManager.GPS_PROVIDER)
         mockLocation.latitude = 41.043912
         mockLocation.longitude = 29.1432343
-        fusedLocation.setMockMode(true)
+        fusedLocation.setMockMode(false)
         val voidTask: Task<Void> =
             fusedLocation.setMockLocation(mockLocation)
         voidTask.addOnSuccessListener {
@@ -119,12 +119,12 @@ class MainActivity : AppCompatActivity(),OnMapReadyCallback {
 
         //Geofence
         populateGeofenceList()
+        addGeofences()
 
         //Activity Recognition part
         listenUserIdentification()
         createActivityConversionUpdate()
         requestActivityTransitionUpdate()
-
 
     }
 
@@ -141,17 +141,16 @@ class MainActivity : AppCompatActivity(),OnMapReadyCallback {
                     // removed after this period of time.
                     .setValidContinueTime(Geofence.GEOFENCE_NEVER_EXPIRE)
                     .setConversions(
-                        Geofence.ENTER_GEOFENCE_CONVERSION or Geofence.DWELL_GEOFENCE_CONVERSION
-                    )
-                    .setDwellDelayTime(10000) //10 seconds
+                        Geofence.ENTER_GEOFENCE_CONVERSION or
+                        Geofence.DWELL_GEOFENCE_CONVERSION)
+                    .setDwellDelayTime(10000) //10 seconds.
                     .build()
             )
         }
    }
-
     private fun getGeofencingRequest(): GeofenceRequest? {
         val builder: GeofenceRequest.Builder = GeofenceRequest.Builder()
-        builder.setInitConversions(GeofenceRequest.ENTER_INIT_CONVERSION)
+        builder.setInitConversions(GeofenceRequest.ENTER_INIT_CONVERSION or GeofenceRequest.DWELL_INIT_CONVERSION)
         // Add the geofences to be monitored by geofencing service.
         builder.createGeofenceList(mGeofenceList)
         // Return a GeofencingRequest.
@@ -180,10 +179,9 @@ class MainActivity : AppCompatActivity(),OnMapReadyCallback {
         map!!.isMyLocationEnabled = true //Enables the my-location function.
         map.uiSettings.isMyLocationButtonEnabled = false
 
-        map.setOnMapClickListener {
-            addGeofences()
-            map.addMarker(MarkerOptions().position(it).alpha(0.5f))
-            map.addCircle(CircleOptions().center(it).radius(100.0).fillColor(R.color.colorAccent).strokeWidth(5f)).strokeColor
+        for(i in Constants.BAY_AREA_LANDMARKS){
+            map.addMarker(MarkerOptions().position(i.value).title(i.key))
+            map.addCircle(CircleOptions().center(i.value).radius(Constants.GEOFENCE_RADIUS_IN_METERS.toDouble()).fillColor(R.color.colorAccent).strokeWidth(5f)).strokeColor
         }
 
         map.uiSettings.isCompassEnabled = true

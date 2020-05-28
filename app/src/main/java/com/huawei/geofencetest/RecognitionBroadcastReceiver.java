@@ -34,10 +34,10 @@ public class RecognitionBroadcastReceiver extends BroadcastReceiver {
                 }
 
                 ActivityIdentificationResponse activityRecognitionResult = ActivityIdentificationResponse.getDataFromIntent(intent);
-                if (activityRecognitionResult != null && isListenActivityIdentification){
-                    Log.i(TAG, "activityRecognitionResult:" + activityRecognitionResult);
-                    List<ActivityIdentificationData> list = activityRecognitionResult.getActivityIdentificationDatas();
-                    MainActivity.sendData(list);
+                    if (activityRecognitionResult != null && isListenActivityIdentification){
+                        Log.i(TAG, "activityRecognitionResult:" + activityRecognitionResult);
+                        List<ActivityIdentificationData> list = activityRecognitionResult.getActivityIdentificationDatas();
+                        MainActivity.sendData(list);
                 }
 
             }
