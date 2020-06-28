@@ -28,19 +28,13 @@ final class Constants {
     private Constants() {
     }
 
-    /**
-     * Used to set an expiration time for a geofence. After this amount of time Location Services
-     * stops tracking the geofence.
-     */
     private static final long GEOFENCE_EXPIRATION_IN_HOURS = 12;
 
-    static final long GEOFENCE_EXPIRATION_IN_MILLISECONDS =
-            GEOFENCE_EXPIRATION_IN_HOURS * 60 * 60 * 1000;
-    static final float GEOFENCE_RADIUS_IN_METERS = 100;
+    static final float GEOFENCE_RADIUS_IN_METERS = 200;
 
     static final HashMap<String, LatLng> BAY_AREA_LANDMARKS = new HashMap<>();
     static {
-        BAY_AREA_LANDMARKS.put("HOME", new LatLng(40.9988764,28.8470277));
+        BAY_AREA_LANDMARKS.put("HOME", new LatLng(40.9816806,29.1229218));
         BAY_AREA_LANDMARKS.put("OFFICE", new LatLng(41.043912,29.1432343));
     }
 }
